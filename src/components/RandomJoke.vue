@@ -32,3 +32,12 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+button {
+  padding: 5px;
+  border-radius: 2px;
+  color: red;
+  background-color: yellow;
+}
+</style>
