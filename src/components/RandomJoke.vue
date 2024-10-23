@@ -3,7 +3,7 @@
     <h1>Carambar Jokes</h1>
     <p v-if="joke">{{ joke.content }}</p>
     <!-- <p v-else>Chargement...</p> -->
-    <button @click="fetchRandomJoke">Joke</button>
+    <button @click="getRandomJoke">Joke</button>
   </div>
 </template>
 
