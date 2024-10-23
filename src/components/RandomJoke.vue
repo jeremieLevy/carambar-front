@@ -1,29 +1,34 @@
 <template>
   <div>
-    <h1>Carambar Jokes</h1>
+    <h1>Carambar Joke</h1>
     <p v-if="joke">{{ joke.content }}</p>
     <!-- <p v-else>Chargement...</p> -->
-    <button @click="getRandomJoke">Joke</button>
+    <button @click="fetchRandomJoke">Click for a new Joke</button>
   </div>
 </template>
 
 <script>
+import apiClient from '../api/axios'
+
 export default {
   data() {
     return {
-      joke: ''
+      joke: null,
+      error: null
     }
   },
   methods: {
-    async getRandomJoke() {
+    async fetchRandomJoke() {
       try {
-        const response = await fetch('https://carambar-api.onrender.com/blagues/random')
-        const data = await response.json()
-        this.joke = data.content;
-      } catch (error) {
-        console.error('Error fetching joke:', error)
+        const response = await apiClient.get('/blagues/random')
+        this.joke = response.data
+      } catch (err) {
+        this.error = 'Erreur lors de la récupération de la blague aléatoire'
       }
     }
+  },
+  created() {
+    this.fetchRandomJoke()
   }
-}
+};
 </script>
